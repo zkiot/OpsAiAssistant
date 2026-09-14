@@ -1,0 +1,59 @@
+[project]
+name = "ai-ops-assistant"
+version = "0.1.0"
+description = "AI 运维助手 - 生产级 FastAPI 项目骨架"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "sqlalchemy[asyncio]>=2.0",
+    "asyncpg>=0.30",
+    "alembic>=1.14",
+    "redis>=5.2",
+    "httpx>=0.27",
+    "pymilvus>=2.6",
+    "openai>=1.55",
+    "python-dotenv>=1.0",
+    "tenacity>=9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=6.0",
+    "black>=24.10",
+    "ruff>=0.7",
+    "httpx>=0.27",
+]
+langchain = [
+    "langchain-core>=0.3",
+    "langchain-milvus>=0.1",
+]
+llamaindex = [
+    "llama-index-core>=0.12",
+]
+agent = [
+    "langgraph>=0.2",
+    "langgraph-checkpoint-redis",  # 生产环境用Redis做checkpointer，别用内存版
+]
+
+mcp = [
+    "mcp[cli]>=2,<3",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.black]
+line-length = 100
+
+[tool.setuptools.packages.find]
+include = ["app*"]
