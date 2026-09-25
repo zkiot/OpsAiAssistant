@@ -87,6 +87,18 @@ pytest                          # 全部测试
 pytest tests/unit                # 只跑单元测试（不依赖外部服务，最快）
 pytest --cov=app tests/          # 带覆盖率
 ```
+# 生成迁移
+alembic revision --autogenerate -m "描述"
+# 只看会执行什么 SQL，不真正执行
+alembic upgrade head --sql
+# 执行迁移到最新
+alembic upgrade head
+# 回滚一步
+alembic downgrade -1
+# 查看当前版本
+alembic current
+# 查看迁移历史
+alembic history
 
 ## 设计要点
 
